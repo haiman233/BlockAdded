@@ -16,15 +16,15 @@ public class CopperBlock {
     private static SlimefunItem sfItem;
 
     public CopperBlock(ItemGroup itemGroup) {
-        sfItem = registerCopperBlock(itemGroup);
-        registerCopper(itemGroup);
+        sfItem = registerBlock(itemGroup);
+        registerReverse(itemGroup);
     }
 
     public static SlimefunItem sfItem() {
         return sfItem;
     }
 
-    public SlimefunItem registerCopperBlock(ItemGroup itemGroup) {
+    public SlimefunItem registerBlock(ItemGroup itemGroup) {
         SlimefunItemStack SFItemStack = new SlimefunItemStack("X_COPPER_BLOCK", Material.COPPER_BLOCK, "&6Copper Block");
 
         ItemStack[] recipe = {
@@ -38,7 +38,7 @@ public class CopperBlock {
         return item;
     }
 
-    public void registerCopper(ItemGroup itemGroup) {
+    public void registerReverse(ItemGroup itemGroup) {
         SlimefunItemStack SFItemStack = new SlimefunItemStack("X_SF_COPPER", Material.COPPER_INGOT, "Reverse Copper");
 
         ItemStack[] recipe = {sfItem().getItem()};

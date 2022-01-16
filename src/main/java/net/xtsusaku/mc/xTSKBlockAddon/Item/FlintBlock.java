@@ -13,15 +13,15 @@ public class FlintBlock {
     private static SlimefunItem sfItem;
 
     public FlintBlock(ItemGroup itemGroup) {
-        sfItem = registerFlintBlock(itemGroup);
-        registerFlint(itemGroup);
+        sfItem = registerBlock(itemGroup);
+        registerReverse(itemGroup);
     }
 
     public static SlimefunItem sfItem() {
         return sfItem;
     }
 
-    public SlimefunItem registerFlintBlock(ItemGroup itemGroup) {
+    public SlimefunItem registerBlock(ItemGroup itemGroup) {
         SlimefunItemStack SFItemStack = new SlimefunItemStack("X_FLINT_BLOCK", Material.COAL_BLOCK, "&fFlint Block");
 
         ItemStack[] recipe = {
@@ -35,7 +35,7 @@ public class FlintBlock {
         return item;
     }
 
-    public void registerFlint(ItemGroup itemGroup) {
+    public void registerReverse(ItemGroup itemGroup) {
         SlimefunItemStack SFItemStack = new SlimefunItemStack("X_FLINT", Material.FLINT, "Reverse Flint");
 
         ItemStack[] recipe = {sfItem().getItem()};

@@ -1,5 +1,10 @@
 package net.xtsusaku.mc.xTSKBlockAddon;
 
+import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
+import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
+import io.github.thebusybiscuit.slimefun4.api.researches.Research;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.config.Config;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import net.xtsusaku.mc.xTSKBlockAddon.Item.CopperBlock;
 import net.xtsusaku.mc.xTSKBlockAddon.Item.FlintBlock;
 import org.bukkit.Material;
@@ -7,17 +12,10 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
-import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
-import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
-import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
-import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
-import io.github.thebusybiscuit.slimefun4.libraries.dough.config.Config;
-import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
-
 public class xTSKBlockAddon extends JavaPlugin implements SlimefunAddon {
 
     private static xTSKBlockAddon instance;
+    private NamespacedKey researchKey = new NamespacedKey(this, "xTSK_Block_Addon_1");
 
     public static xTSKBlockAddon getInstance() {
         return instance;
@@ -35,6 +33,13 @@ public class xTSKBlockAddon extends JavaPlugin implements SlimefunAddon {
 
         new FlintBlock(blockAddonGroup);
         new CopperBlock(blockAddonGroup);
+
+        Research research1 = new Research(researchKey, 171216233, "New Metal-Blocks!", 7);
+        research1.addItems(
+                FlintBlock.sfItem(),
+                CopperBlock.sfItem()
+        );
+        research1.register();
     }
 
     @Override
