@@ -11,14 +11,19 @@ import org.bukkit.inventory.ItemStack;
 public class FlintBlock {
 
     private static SlimefunItem sfItem;
+    private static SlimefunItem sfItemReverse;
 
     public FlintBlock(ItemGroup itemGroup) {
         sfItem = registerBlock(itemGroup);
-        registerReverse(itemGroup);
+        sfItemReverse = registerReverse(itemGroup);
     }
 
     public static SlimefunItem sfItem() {
         return sfItem;
+    }
+
+    public static SlimefunItem sfItemReverse() {
+        return sfItemReverse;
     }
 
     public SlimefunItem registerBlock(ItemGroup itemGroup) {
@@ -35,7 +40,7 @@ public class FlintBlock {
         return item;
     }
 
-    public void registerReverse(ItemGroup itemGroup) {
+    public SlimefunItem registerReverse(ItemGroup itemGroup) {
         SlimefunItemStack SFItemStack = new SlimefunItemStack("X_FLINT", Material.FLINT, "Reverse Flint");
 
         ItemStack[] recipe = {sfItem().getItem()};
@@ -46,6 +51,8 @@ public class FlintBlock {
         SlimefunItem item = new SlimefunItem(itemGroup, SFItemStack, RecipeType.ENHANCED_CRAFTING_TABLE, recipe, result);
         item.setHidden(true);
         item.register(xTSKBlockAddon.getInstance());
+
+        return item;
     }
 
 }

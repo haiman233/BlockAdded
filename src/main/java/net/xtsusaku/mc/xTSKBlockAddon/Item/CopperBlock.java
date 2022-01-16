@@ -14,14 +14,19 @@ import java.util.Objects;
 public class CopperBlock {
 
     private static SlimefunItem sfItem;
+    private static SlimefunItem sfItemReverse;
 
     public CopperBlock(ItemGroup itemGroup) {
         sfItem = registerBlock(itemGroup);
-        registerReverse(itemGroup);
+        sfItemReverse = registerReverse(itemGroup);
     }
 
     public static SlimefunItem sfItem() {
         return sfItem;
+    }
+
+    public static SlimefunItem sfItemReverse() {
+        return sfItemReverse;
     }
 
     public SlimefunItem registerBlock(ItemGroup itemGroup) {
@@ -38,7 +43,7 @@ public class CopperBlock {
         return item;
     }
 
-    public void registerReverse(ItemGroup itemGroup) {
+    public SlimefunItem registerReverse(ItemGroup itemGroup) {
         SlimefunItemStack SFItemStack = new SlimefunItemStack("X_SF_COPPER", Material.COPPER_INGOT, "Reverse Copper");
 
         ItemStack[] recipe = {sfItem().getItem()};
@@ -49,6 +54,8 @@ public class CopperBlock {
         SlimefunItem item = new SlimefunItem(itemGroup, SFItemStack, RecipeType.ENHANCED_CRAFTING_TABLE, recipe, result);
         item.setHidden(true);
         item.register(xTSKBlockAddon.getInstance());
+
+        return item;
     }
 
 }
