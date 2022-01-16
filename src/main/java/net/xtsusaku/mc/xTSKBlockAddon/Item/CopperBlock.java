@@ -39,7 +39,7 @@ public class CopperBlock {
     }
 
     public void registerCopper(ItemGroup itemGroup) {
-        SlimefunItemStack SFItemStack = new SlimefunItemStack("X_COPPER", Material.COPPER_INGOT, "Reverse Copper");
+        SlimefunItemStack SFItemStack = new SlimefunItemStack("X_SF_COPPER", Material.COPPER_INGOT, "Reverse Copper");
 
         ItemStack[] recipe = {sfItem().getItem()};
 
