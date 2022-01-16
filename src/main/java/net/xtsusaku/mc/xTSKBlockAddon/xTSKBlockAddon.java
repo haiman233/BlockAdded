@@ -1,5 +1,6 @@
 package net.xtsusaku.mc.xTSKBlockAddon;
 
+import net.xtsusaku.mc.xTSKBlockAddon.Item.CopperBlock;
 import net.xtsusaku.mc.xTSKBlockAddon.Item.FlintBlock;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -33,6 +34,7 @@ public class xTSKBlockAddon extends JavaPlugin implements SlimefunAddon {
         ItemGroup blockAddonGroup = new ItemGroup(blockAddonGroupId, itemGroupItem);
 
         new FlintBlock(blockAddonGroup);
+        new CopperBlock(blockAddonGroup);
     }
 
     @Override
