@@ -47,7 +47,7 @@ public class CopperBlock {
         result.setAmount(9);
 
         SlimefunItem item = new SlimefunItem(itemGroup, SFItemStack, RecipeType.ENHANCED_CRAFTING_TABLE, recipe, result);
-//        item.setHidden(true);
+        item.setHidden(true);
         item.register(xTSKBlockAddon.getInstance());
     }
 
