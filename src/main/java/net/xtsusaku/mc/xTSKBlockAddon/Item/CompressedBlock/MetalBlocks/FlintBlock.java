@@ -1,9 +1,10 @@
-package net.xtsusaku.mc.xTSKBlockAddon.Item;
+package net.xtsusaku.mc.xTSKBlockAddon.Item.CompressedBlock.MetalBlocks;
 
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
+import net.xtsusaku.mc.xTSKBlockAddon.Item.CompressedBlock.AbstractCompressedBlock;
 import net.xtsusaku.mc.xTSKBlockAddon.xTSKBlockAddon;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;

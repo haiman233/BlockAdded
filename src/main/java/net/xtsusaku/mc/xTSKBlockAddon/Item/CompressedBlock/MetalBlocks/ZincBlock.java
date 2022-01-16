@@ -1,18 +1,19 @@
-package net.xtsusaku.mc.xTSKBlockAddon.Item;
+package net.xtsusaku.mc.xTSKBlockAddon.Item.CompressedBlock.MetalBlocks;
 
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
+import net.xtsusaku.mc.xTSKBlockAddon.Item.CompressedBlock.AbstractCompressedBlock;
 import net.xtsusaku.mc.xTSKBlockAddon.xTSKBlockAddon;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
-public class CopperBlock extends AbstractCompressedBlock {
+public class ZincBlock extends AbstractCompressedBlock {
 
-    public CopperBlock(ItemGroup itemGroup) {
-        super(itemGroup, SlimefunItems.COPPER_INGOT.clone(), Material.COPPER_BLOCK, Material.BRICK, "X_SF_COPPER", "&6COPPER Block");
+    public ZincBlock(ItemGroup itemGroup) {
+        super(itemGroup, SlimefunItems.ZINC_INGOT.clone(), Material.IRON_BLOCK, Material.IRON_INGOT, "X_SF_ZINC", "&bZinc Block");
     }
 
     public SlimefunItem registerBlock(ItemGroup itemGroup) {

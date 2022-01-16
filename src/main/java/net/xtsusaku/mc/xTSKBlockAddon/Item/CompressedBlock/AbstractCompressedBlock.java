@@ -1,4 +1,4 @@
-package net.xtsusaku.mc.xTSKBlockAddon.Item;
+package net.xtsusaku.mc.xTSKBlockAddon.Item.CompressedBlock;
 
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;

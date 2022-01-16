@@ -5,8 +5,7 @@ import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.researches.Research;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.config.Config;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
-import net.xtsusaku.mc.xTSKBlockAddon.Item.AbstractCompressedBlock;
-import net.xtsusaku.mc.xTSKBlockAddon.Item.FlintBlock;
+import net.xtsusaku.mc.xTSKBlockAddon.Item.CompressedBlock.AbstractCompressedBlock;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
@@ -15,7 +14,6 @@ import org.reflections.Reflections;
 
 import javax.annotation.Nonnull;
 import java.lang.reflect.InvocationTargetException;
-import java.util.Arrays;
 import java.util.Set;
 
 public class xTSKBlockAddon extends JavaPlugin implements SlimefunAddon {
@@ -24,7 +22,7 @@ public class xTSKBlockAddon extends JavaPlugin implements SlimefunAddon {
 
     private ItemGroup blockAddonGroup;
     private Research metalResearch;
-    private NamespacedKey researchKey = new NamespacedKey(this, "xTSK_Block_Addon_1");
+    private final NamespacedKey researchKey = new NamespacedKey(this, "new_metal_blocks");
 
     public static xTSKBlockAddon getInstance() {
         return instance;
@@ -47,7 +45,7 @@ public class xTSKBlockAddon extends JavaPlugin implements SlimefunAddon {
     }
 
     public void loadItems(){
-        Reflections reflections = new Reflections("net.xtsusaku.mc.xTSKBlockAddon");
+        Reflections reflections = new Reflections("net.xtsusaku.mc.xTSKBlockAddon.Item.CompressedBlock.MetalBlocks");
 
         Set<Class<? extends AbstractCompressedBlock>> allClasses = reflections.getSubTypesOf(AbstractCompressedBlock.class);
 
