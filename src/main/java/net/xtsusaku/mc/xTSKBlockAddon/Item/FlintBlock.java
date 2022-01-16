@@ -8,31 +8,19 @@ import net.xtsusaku.mc.xTSKBlockAddon.xTSKBlockAddon;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
-public class FlintBlock {
-
-    private static SlimefunItem sfItem;
-    private static SlimefunItem sfItemReverse;
+public class FlintBlock extends AbstractCompressedBlock {
 
     public FlintBlock(ItemGroup itemGroup) {
-        sfItem = registerBlock(itemGroup);
-        sfItemReverse = registerReverse(itemGroup);
-    }
-
-    public static SlimefunItem sfItem() {
-        return sfItem;
-    }
-
-    public static SlimefunItem sfItemReverse() {
-        return sfItemReverse;
+        super(itemGroup, new ItemStack(Material.FLINT), "X_FLINT", "&fFlint Block");
     }
 
     public SlimefunItem registerBlock(ItemGroup itemGroup) {
-        SlimefunItemStack SFItemStack = new SlimefunItemStack("X_FLINT_BLOCK", Material.COAL_BLOCK, "&fFlint Block");
+        SlimefunItemStack SFItemStack = new SlimefunItemStack(idPrefix + "_BLOCK", Material.COAL_BLOCK, compressedName);
 
         ItemStack[] recipe = {
-                new ItemStack(Material.FLINT), new ItemStack(Material.FLINT), new ItemStack(Material.FLINT),
-                new ItemStack(Material.FLINT), new ItemStack(Material.FLINT), new ItemStack(Material.FLINT),
-                new ItemStack(Material.FLINT), new ItemStack(Material.FLINT), new ItemStack(Material.FLINT)};
+                singleItem, singleItem, singleItem,
+                singleItem, singleItem, singleItem,
+                singleItem, singleItem, singleItem};
 
         SlimefunItem item = new SlimefunItem(itemGroup, SFItemStack, RecipeType.ENHANCED_CRAFTING_TABLE, recipe);
         item.register(xTSKBlockAddon.getInstance());
@@ -41,11 +29,11 @@ public class FlintBlock {
     }
 
     public SlimefunItem registerReverse(ItemGroup itemGroup) {
-        SlimefunItemStack SFItemStack = new SlimefunItemStack("X_FLINT", Material.FLINT, "Reverse Flint");
+        SlimefunItemStack SFItemStack = new SlimefunItemStack(idPrefix + "_REVERSE", Material.FLINT, "&fReverse " + compressedName);
 
         ItemStack[] recipe = {sfItem().getItem()};
 
-        ItemStack result = new ItemStack(Material.FLINT);
+        ItemStack result = singleItem.clone();
         result.setAmount(9);
 
         SlimefunItem item = new SlimefunItem(itemGroup, SFItemStack, RecipeType.ENHANCED_CRAFTING_TABLE, recipe, result);

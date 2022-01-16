@@ -5,16 +5,25 @@ import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.researches.Research;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.config.Config;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
-import net.xtsusaku.mc.xTSKBlockAddon.Item.CopperBlock;
+import net.xtsusaku.mc.xTSKBlockAddon.Item.AbstractCompressedBlock;
 import net.xtsusaku.mc.xTSKBlockAddon.Item.FlintBlock;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.reflections.Reflections;
+
+import javax.annotation.Nonnull;
+import java.lang.reflect.InvocationTargetException;
+import java.util.Arrays;
+import java.util.Set;
 
 public class xTSKBlockAddon extends JavaPlugin implements SlimefunAddon {
 
     private static xTSKBlockAddon instance;
+
+    private ItemGroup blockAddonGroup;
+    private Research metalResearch;
     private NamespacedKey researchKey = new NamespacedKey(this, "xTSK_Block_Addon_1");
 
     public static xTSKBlockAddon getInstance() {
@@ -29,17 +38,29 @@ public class xTSKBlockAddon extends JavaPlugin implements SlimefunAddon {
 
         ItemStack itemGroupItem = new CustomItemStack(Material.IRON_BLOCK, "&aBlock Addon", "", "&a> Click to open");
         NamespacedKey blockAddonGroupId = new NamespacedKey(this, "block_addon");
-        ItemGroup blockAddonGroup = new ItemGroup(blockAddonGroupId, itemGroupItem);
+        blockAddonGroup = new ItemGroup(blockAddonGroupId, itemGroupItem);
+        metalResearch = new Research(researchKey, 171216233, "New Metal-Blocks!", 16);
 
-        new FlintBlock(blockAddonGroup);
-        new CopperBlock(blockAddonGroup);
+        loadItems();
 
-        Research research1 = new Research(researchKey, 171216233, "New Metal-Blocks!", 7);
-        research1.addItems(
-                FlintBlock.sfItem(),
-                CopperBlock.sfItem()
-        );
-        research1.register();
+        metalResearch.register();
+    }
+
+    public void loadItems(){
+        Reflections reflections = new Reflections("net.xtsusaku.mc.xTSKBlockAddon");
+
+        Set<Class<? extends AbstractCompressedBlock>> allClasses = reflections.getSubTypesOf(AbstractCompressedBlock.class);
+
+        allClasses.forEach(cBlock -> {
+            try {
+                AbstractCompressedBlock ACB = cBlock.getDeclaredConstructor(ItemGroup.class).newInstance(blockAddonGroup);
+                metalResearch.addItems(ACB.sfItem());
+                metalResearch.addItems(ACB.sfItemReverse());
+            } catch (NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException e) {
+                e.printStackTrace();
+            }
+        });
+
     }
 
     @Override
@@ -54,6 +75,7 @@ public class xTSKBlockAddon extends JavaPlugin implements SlimefunAddon {
     }
 
     @Override
+    @Nonnull
     public JavaPlugin getJavaPlugin() {
         /*
          * You will need to return a reference to your Plugin here.

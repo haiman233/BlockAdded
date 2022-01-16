@@ -4,38 +4,23 @@ import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
-import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import net.xtsusaku.mc.xTSKBlockAddon.xTSKBlockAddon;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
-import java.util.Objects;
-
-public class CopperBlock {
-
-    private static SlimefunItem sfItem;
-    private static SlimefunItem sfItemReverse;
+public class CopperBlock extends AbstractCompressedBlock {
 
     public CopperBlock(ItemGroup itemGroup) {
-        sfItem = registerBlock(itemGroup);
-        sfItemReverse = registerReverse(itemGroup);
-    }
-
-    public static SlimefunItem sfItem() {
-        return sfItem;
-    }
-
-    public static SlimefunItem sfItemReverse() {
-        return sfItemReverse;
+        super(itemGroup, new ItemStack(Material.FLINT), "X_SF_COPPER", "&6COPPER Block");
     }
 
     public SlimefunItem registerBlock(ItemGroup itemGroup) {
-        SlimefunItemStack SFItemStack = new SlimefunItemStack("X_COPPER_BLOCK", Material.COPPER_BLOCK, "&6Copper Block");
+        SlimefunItemStack SFItemStack = new SlimefunItemStack(idPrefix + "_BLOCK", Material.COAL_BLOCK, compressedName);
 
         ItemStack[] recipe = {
-                SlimefunItems.COPPER_INGOT, SlimefunItems.COPPER_INGOT, SlimefunItems.COPPER_INGOT,
-                SlimefunItems.COPPER_INGOT, SlimefunItems.COPPER_INGOT, SlimefunItems.COPPER_INGOT,
-                SlimefunItems.COPPER_INGOT, SlimefunItems.COPPER_INGOT, SlimefunItems.COPPER_INGOT};
+                singleItem, singleItem, singleItem,
+                singleItem, singleItem, singleItem,
+                singleItem, singleItem, singleItem};
 
         SlimefunItem item = new SlimefunItem(itemGroup, SFItemStack, RecipeType.ENHANCED_CRAFTING_TABLE, recipe);
         item.register(xTSKBlockAddon.getInstance());
@@ -44,11 +29,11 @@ public class CopperBlock {
     }
 
     public SlimefunItem registerReverse(ItemGroup itemGroup) {
-        SlimefunItemStack SFItemStack = new SlimefunItemStack("X_SF_COPPER", Material.COPPER_INGOT, "Reverse Copper");
+        SlimefunItemStack SFItemStack = new SlimefunItemStack(idPrefix + "_REVERSE", Material.FLINT, "&fReverse " + compressedName);
 
         ItemStack[] recipe = {sfItem().getItem()};
 
-        ItemStack result = SlimefunItems.COPPER_INGOT.clone();
+        ItemStack result = singleItem.clone();
         result.setAmount(9);
 
         SlimefunItem item = new SlimefunItem(itemGroup, SFItemStack, RecipeType.ENHANCED_CRAFTING_TABLE, recipe, result);
